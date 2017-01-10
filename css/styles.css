@@ -1,0 +1,101 @@
+.container {
+    margin: 0 auto;
+    max-width: 800px;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.title {
+    text-align: center;
+    font-size: 56px;
+    color: lightblue;
+    font-weight: bold;
+}
+
+.subtitle {
+    text-align: center;
+    color: #42A5F5;
+    font-weight: light;
+}
+
+.header {
+    margin-bottom: 64px;
+}
+
+.calorie-display {
+    padding: 0;
+}
+
+.search-result:hover {
+    background-color: lightblue;
+    cursor: pointer;
+}
+
+.serving-size {
+    width: 50%;
+    display: inline-block;
+    margin-right: 36px;
+}
+
+.serving-side {
+    text-align: right;
+    padding: 0;
+}
+
+
+.tooltip-inner {
+    width: 100px;
+    padding:3px 8px;
+    color:#fff;
+    text-align:center;
+    background-color:#245973;
+    border-radius:5px;
+    font-size: 14px;
+}
+
+
+.items-container {
+    height: 40px;
+    width: 95%;
+    background-color: ##FFEBEE;
+    border: 3px outset lightblue;
+    border-radius: 5px;
+    margin: auto;
+}
+
+.item-list li {
+    color: lightblue;
+    list-style-type: none;
+    width: 100%;
+}
+
+.item-calorie {
+    display: inline-block;
+}
+
+.delete {
+    padding: 0;
+    border: none;
+    background: none;
+    color: #2196F3;
+    font-size: 1.5em;
+    margin-left: 16px;
+    display: none;
+}
+
+.item-list li:hover .delete {
+    display: inline;
+}
+
+.main {
+    margin-top: 40px;
+}
+
+.main h2 {
+    color: #42A5F5;
+}
+
+.added-total {
+    text-align: center;
+    color: #283593;
+}
+
