@@ -35,9 +35,12 @@ app.AppView = Backbone.View.extend({
         this.listenTo(app.Foods, 'add', this.render);       //recalculate and redisplay total calories
         this.listenTo(app.Foods, 'remove', this.render);    //recalculate and redisplay total calories
 
+        this.containerRect = $('.items-container')[0].getBoundingClientRect();
+
         app.Foods.fetch(); //fetch from local storage
 
-        _.bindAll(this, 'render', 'addFoodView', 'searchEntries', 'addItem', 'clickedResult');
+        _.bindAll(this, 'render', 'addFoodView', 'searchEntries', 'addItem', 'clickedResult', 'displayMessage');
+
 
         //for display to user when they click on 'add' before searching/choosing a serving size
         $('.add-button').tooltip({
@@ -55,6 +58,11 @@ app.AppView = Backbone.View.extend({
 
         // Update the total calories
         this.$totalCalories.text(calorieTotal + ' calories');
+
+        // calculate the height of the container div each time a new item is added
+        var rect = $('.item-calorie').last()[0].getBoundingClientRect();
+        console.log(rect);
+        this.$itemContainer.height(rect.bottom - this.containerRect.top + 20);
         return this;
     },
 
@@ -67,7 +75,6 @@ app.AppView = Backbone.View.extend({
             model: food
         });
         this.$itemList.append(view.render().el);
-        this.$itemContainer.height("+=25");
     },
 
     /*
@@ -80,6 +87,8 @@ app.AppView = Backbone.View.extend({
         var input = this.$input.val().trim();
 
         if (input) {
+            self.$searchList.html('');
+            self.displayMessage('Loading...');
             $.ajax({
                     url: "https://api.nutritionix.com/v1_1/search/" +
                         input + "?results=0%3A10&fields=item_name%2Cbrand_name%2Cnf_calories" +
@@ -87,13 +96,22 @@ app.AppView = Backbone.View.extend({
                 })
                 .done(function(data) {
                     self.$searchList.html('');
-                    for (var i = 0; i < data.hits.length; i++) {
-                        self.$searchList.append(self.searchTemplate({
-                            result: data.hits[i].fields.item_name + " -- " + data.hits[i].fields.brand_name,
-                            index: i
-                        }));
-                        self.searchArr.push(data.hits[i].fields);
+                    if (!(data.hits.length > 0)) {
+                        self.displayMessage('No results found');
                     }
+                    else {
+                        for (var i = 0; i < data.hits.length; i++) {
+                            self.$searchList.append(self.searchTemplate({
+                                result: data.hits[i].fields.item_name + " -- " + data.hits[i].fields.brand_name,
+                                index: i
+                            }));
+                            self.searchArr.push(data.hits[i].fields);
+                        }
+                    }
+                })
+                .fail(function(error) {
+                    self.$searchList.html('');
+                    self.displayMessage('No results found');
                 });
         } else {
             self.$searchList.html('');
@@ -146,6 +164,16 @@ app.AppView = Backbone.View.extend({
             total += food.get('calories') * food.get('servings');
         });
         return total;
+    },
+
+    /*
+     * Display some helpful messages to the user such as loading... and if no results were found
+     */
+    displayMessage: function(message) {
+        this.$searchList.append(this.searchTemplate({
+            result: message,
+            index: 0
+        }));
     }
 
 });

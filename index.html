@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>The Health Tracker App</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
@@ -30,10 +31,10 @@
       </section>
 
         <section class="calorie-section form-group row">
-          <div class="col-md-6 col-sm-6 calorie-display">
+          <div class="col-md-6 col-sm-6 col-xs-12 calorie-display">
             <input class="calorie-count form-control" placeholder="Calories per serving">
           </div>
-          <div class="col-md-6 col-sm-6 serving-side">
+          <div class="col-md-6 col-sm-6 col-xs-12 serving-side">
             <select class="serving-size form-control" name="serving-select">
               <option value="" disabled selected>SERVINGS</option>
               <option value="1">1 Serving</option>
@@ -56,14 +57,15 @@
     </div>
 
     <script type="text/template" id="item-template">
-        <h4 class="item-info col-md-8"><%= title %> (<%= servings %> Servings)</h4>
-        <div class="col-md-4">
-          <h4 class="item-calorie"><%= calories %> Calories</h4>
-          <button class="delete">X</button>
-        </div>
+          <h4 class="item-info col-md-8 col-sm-8 col-xs-8"><%= title %> (<%= servings %> Servings)</h4>
+          <div class="col-md-4 col-sm-4 col-xs-4">
+            <h4 class="item-calorie"><%= calories %> Calories</h4>
+            <button class="delete">X</button>
+          </div>
     </script>
 
     <script type="text/template" id="search-template">
+
         <li class="search-result list-group-item" data-index=<%= index %>>
             <%= result %>
         </li>

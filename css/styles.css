@@ -99,3 +99,17 @@
     color: #283593;
 }
 
+
+@media screen and (max-width: 950px) {
+    .item-info,
+    .item-calorie {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .serving-side {
+        text-align: center;
+    }
+}
+
