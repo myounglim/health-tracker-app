@@ -61,7 +61,6 @@ app.AppView = Backbone.View.extend({
 
         // calculate the height of the container div each time a new item is added
         var rect = $('.item-calorie').last()[0].getBoundingClientRect();
-        console.log(rect);
         this.$itemContainer.height(rect.bottom - this.containerRect.top + 20);
         return this;
     },

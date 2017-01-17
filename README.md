@@ -6,7 +6,7 @@ This app allows users to search for food items and get a calorie total of all th
 
 ### Libraries
 * [Backbone.js] (http://backbonejs.org/) An organizational JavaScript framework that provides models, collections, and view handling.
-* [Bootstrap] (http://getbootstrap.com/) A front-end framework for responsive design]
+* [Bootstrap] (http://getbootstrap.com/) A front-end framework for responsive design
 * [jQuery] (https://jquery.com/) A JavaScript library for DOM manipulation, AJAX calls, and cross-browser functionality
 
 ### APIs
